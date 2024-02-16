@@ -206,6 +206,6 @@ const randomNotification = async () => {
     body: 'body1',
     icon: notifImg,
   };
-  new Notification(notifTitle, options);
+  new Notification("title1", options);
   setTimeout(randomNotification, 1000000);
 }
