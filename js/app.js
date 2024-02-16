@@ -33,10 +33,24 @@ const getBlogById = () => {
 
 const writeBlog = () => {
 
-  fetch()
-    .then()
-    .then()
-    .catch(e => console.log(e));
+  const blogData = {
+    title: document.getElementById('title').value,
+    body: document.getElementById('body').value
+  };
+  console.log(blogData);
+
+  fetch(url, { method: 'POST', body: blogData })
+    .then((res) =>
+      res.json()
+    )
+    .then((data) => {
+      console.log(data);
+      document.getElementById('submit-blog').innerText = `Your blog submitted successfully!`;
+    })
+    .catch((e) => {
+      console.log(e);
+      document.getElementById('submit-blog').innerText = `Your blog could not be submitted!`;
+    });
 
 
 };
@@ -44,10 +58,11 @@ const writeBlog = () => {
 const getBlogList = () => {
   console.log('getBlogList');
 
-  fetch(`${url}/${blogId}`)
+  fetch(url)
     .then(resp => resp.json())
     .then(data => {
       console.log(data);
+      let blogList = `<p>Blog List</p>`;
       data.forEach(elem => {
         blogList += `<p>${elem.title}</p>`;
       });
@@ -55,6 +70,7 @@ const getBlogList = () => {
     })
     .catch(e => console.log(e));
 }
+
 
 
 // const url = 'https://jsonplaceholder.typicode.com/posts';
